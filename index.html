@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurelius Autos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+    body {
+      background-color: #f3f4f6;
+      color: #1f2937;
+      line-height: 1.6;
+    }
+    header {
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #2563eb;
+    }
+    .hero {
+      background-color: #2563eb;
+      color: white;
+      text-align: center;
+      padding: 4rem 2rem;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .hero button {
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background-color: white;
+      color: #2563eb;
+      border: none;
+      border-radius: 9999px;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .hero button:hover {
+      background-color: #f3f4f6;
+    }
+    .cars {
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+    .cars h3 {
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
+    }
+    .car-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .car-card {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      padding: 1rem;
+    }
+    .car-card img {
+      width: 100%;
+      border-radius: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .car-card button {
+      margin-top: 1rem;
+      width: 100%;
+      background-color: #2563eb;
+      color: white;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .car-card button:hover {
+      background-color: #1e40af;
+    }
+    footer {
+      background: white;
+      text-align: center;
+      padding: 1rem;
+      border-top: 1px solid #e5e7eb;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<script>
+  const modal = document.getElementById("booking-modal");
+
+  function openModal() {
+    modal.style.display = "flex";
+  }
+
+  function closeModal() {
+    modal.style.display = "none";
+  }
+
+  function submitBooking() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const date = document.getElementById("date").value;
+
+    if (!name || !email || !date) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    alert(`Booking confirmed for ${name} on ${date}. A confirmation will be sent to ${email}.`);
+    closeModal();
+  }
+
+  // Add click event to all Book Now buttons
+  document.querySelectorAll("button").forEach(btn => {
+    if (btn.innerText === "Book Now") {
+      btn.addEventListener("click", openModal);
+    }
+  });
+</script>
+
+<body>
+  <header>
+    <h1>Aurelius Autos</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="browse.html">Browse</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Rent Your Dream Car</h2>
+    <p>Book with ease. Drive with confidence.</p>
+    <button>Browse Cars</button>
+  </section>
+
+  <section class="cars">
+    <h3>Featured Cars</h3>
+   <div class="car-grid">
+  <div class="car-card">
+    <img src="https://via.placeholder.com/300x200" alt="Tesla Model 3">
+    <h4>Tesla Model 3</h4>
+    <p>Electric | Automatic | 2023</p>
+    <button>Book Now</button>
+  </div>
+  <div class="car-card">
+    <img src="https://via.placeholder.com/300x200" alt="BMW X5">
+    <h4>BMW X5</h4>
+    <p>Luxury | Automatic | 2022</p>
+    <button>Book Now</button>
+  </div>
+  <div class="car-card">
+    <img src="https://via.placeholder.com/300x200" alt="Toyota Fortuner">
+    <h4>Toyota Fortuner</h4>
+    <p>SUV | Manual | 2021</p>
+    <button>Book Now</button>
+  </div>
+  <div class="car-card">
+    <img src="https://via.placeholder.com/300x200" alt="Hyundai Verna">
+    <h4>Hyundai Verna</h4>
+    <p>Sedan | Automatic | 2023</p>
+    <button>Book Now</button>
+  </div>
+  <div class="car-card">
+    <img src="https://via.placeholder.com/300x200" alt="Maruti Swift">
+    <h4>Maruti Swift</h4>
+    <p>Hatchback | Manual | 2022</p>
+    <button>Book Now</button>
+  </div>
+  <div class="car-card">
+    <img src="https://via.placeholder.com/300x200" alt="Audi A6">
+    <h4>Audi A6</h4>
+    <p>Luxury | Automatic | 2023</p>
+    <button>Book Now</button>
+  </div>
+</div>
+  </section>
+
+<!-- Booking Modal -->
+<div id="booking-modal" style="display: none;">
+  <div style="
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999;">
+    
+    <div style="background: white; padding: 2rem; border-radius: 1rem; width: 300px; position: relative;">
+      <h3 style="margin-bottom: 1rem;">Book This Car</h3>
+      <input type="text" id="name" placeholder="Your Name" style="width:100%; margin-bottom: 1rem; padding: 0.5rem;">
+      <input type="email" id="email" placeholder="Your Email" style="width:100%; margin-bottom: 1rem; padding: 0.5rem;">
+      <input type="date" id="date" style="width:100%; margin-bottom: 1rem; padding: 0.5rem;">
+      <button onclick="submitBooking()" style="width:100%; background: #2563eb; color:white; padding: 0.5rem; border: none; border-radius: 0.5rem;">Confirm Booking</button>
+      <button onclick="closeModal()" style="margin-top: 0.5rem; width:100%; background: #e5e7eb; padding: 0.5rem; border: none; border-radius: 0.5rem;">Cancel</button>
+    </div>
+
+  </div>
+</div>
+
+  <footer>
+    &copy; 2025 Aurelius Autos. All rights reserved.
+  </footer>
+
+<script>
+  // Open the booking modal
+  function openModal() {
+    document.getElementById("booking-modal").style.display = "block";
+  }
+
+  // Close the booking modal
+  function closeModal() {
+    document.getElementById("booking-modal").style.display = "none";
+  }
+
+  // Submit booking details
+  function submitBooking() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const date = document.getElementById("date").value;
+
+    if (!name || !email || !date) {
+      alert("Please fill out all fields.");
+      return;
+    }
+
+    alert(`Booking confirmed for ${name} on ${date}. Confirmation sent to ${email}.`);
+    closeModal();
+
+    // Optional: clear the form after submission
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("date").value = "";
+  }
+
+  // Automatically add click events to all 'Book Now' buttons
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("button").forEach(btn => {
+      if (btn.innerText === "Book Now") {
+        btn.addEventListener("click", openModal);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+
