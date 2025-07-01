@@ -1,46 +1,11 @@
+<!-- browse.html - Aurelius Autos Business Class -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Browse Cars | Aurelius Autos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', sans-serif; margin: 0; background-color: #f3f4f6; color: #1f2937; }
-    header, footer { background: white; padding: 1rem 2rem; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-    nav a { margin-right: 1.5rem; text-decoration: none; color: #374151; font-weight: 500; }
-    nav a:hover { color: #2563eb; }
-    h2 { text-align: center; margin-top: 2rem; font-size: 2rem; }
-    .filter-bar { display: flex; justify-content: center; gap: 1rem; margin: 1.5rem 0; }
-    .filter-bar button { padding: 0.5rem 1rem; border: none; border-radius: 9999px; background-color: #e5e7eb; cursor: pointer; font-weight: 500; }
-    .filter-bar button:hover { background-color: #2563eb; color: white; }
-    .car-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 2rem auto; padding: 0 2rem; }
-    .car-card { background: white; border-radius: 1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.05); padding: 1rem; }
-    .car-card img { width: 100%; border-radius: 0.75rem; margin-bottom: 1rem; }
-    .car-card button { margin-top: 1rem; width: 100%; background-color: #2563eb; color: white; padding: 0.5rem; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; }
-    .car-card button:hover { background-color: #1e40af; }
-    footer { text-align: center; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 0.9rem; }
-    /* Booking Modal Styles */
-    #booking-modal { display: none; }
-    #booking-modal .overlay {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: flex; justify-content: center; align-items: center;
-      z-index: 9999;
-    }
-    #booking-modal .modal {
-      background: white; padding: 2rem; border-radius: 1rem; width: 300px; position: relative;
-    }
-    #booking-modal input {
-      width: 100%; margin-bottom: 1rem; padding: 0.5rem;
-    }
-    #booking-modal button {
-      width: 100%; padding: 0.5rem; border: none; border-radius: 0.5rem; font-weight: 600;
-    }
-    #booking-modal .confirm { background: #2563eb; color: white; }
-    #booking-modal .confirm:hover { background-color: #1e40af; }
-    #booking-modal .cancel { background: #e5e7eb; margin-top: 0.5rem; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
@@ -52,7 +17,17 @@
     </nav>
   </header>
 
-  <h2>Available Cars for Rent</h2>
+  <section class="hero">
+    <h2>Find Your Perfect Drive</h2>
+    <p>Explore our full fleet of rental cars available now.</p>
+  </section>
+
+  <section class="search-panel">
+    <input type="text" placeholder="Search by model or type" id="search-input">
+    <input type="date" id="search-date">
+    <button onclick="applySearch()">Search</button>
+  </section>
+
   <div class="filter-bar">
     <button onclick="filterCars('all')">All</button>
     <button onclick="filterCars('Electric')">Electric</button>
@@ -64,45 +39,69 @@
 
   <div class="car-grid" id="carGrid">
     <div class="car-card" data-type="Electric">
-      <img src="https://via.placeholder.com/300x200" alt="Tesla Model 3">
+      <img src="https://preview.thenewsmarket.com/Previews/NCAP/StillAssets/960x540/684698_v3.jpg" alt="Tesla Model 3">
       <h4>Tesla Model 3</h4>
       <p>Electric | Automatic | 2023</p>
+      <div class="rating-price">
+        <span class="stars">⭐ 4.8</span>
+        <span class="price">₹4,299/day</span>
+      </div>
       <button>Book Now</button>
     </div>
-    <div class="car-card" data-type="Luxury">
-      <img src="https://via.placeholder.com/300x200" alt="BMW X5">
-      <h4>BMW X5</h4>
-      <p>Luxury | Automatic | 2022</p>
-      <button>Book Now</button>
-    </div>
+    <div class="car-card" data-type="Luxury" data-name="BMW X5">
+  <img src="https://di-uploads-pod23.dealerinspire.com/bmwofowingsmills/uploads/2023/06/TRANSPARENT_cc_2024BMS220013_01_1280_475-1-1024x768.png" alt="BMW X5">
+  <h4>BMW X5</h4>
+  <p>Luxury | Automatic | 2022</p>
+  <div class="rating-price">
+    <span class="stars">⭐ 4.6</span>
+    <span class="price">₹5,299/day</span>
+  </div>
+  <button>Book Now</button>
+</div>
+
     <div class="car-card" data-type="SUV">
-      <img src="https://via.placeholder.com/300x200" alt="Toyota Fortuner">
+      <img src="https://img-ik.cars.co.za/news-site-za/images/2024/12/fortuner-grs-new-lead.jpg" alt="Toyota Fortuner">
       <h4>Toyota Fortuner</h4>
       <p>SUV | Manual | 2021</p>
+      <div class="rating-price">
+        <span class="stars">⭐ 4.4</span>
+        <span class="price">₹3,999/day</span>
+      </div>
       <button>Book Now</button>
     </div>
     <div class="car-card" data-type="Sedan">
-      <img src="https://via.placeholder.com/300x200" alt="Hyundai Verna">
+      <img src="https://trident-group.s3.ap-south-1.amazonaws.com/hyundai/models/colors/1698658899.png" alt="Hyundai Verna">
       <h4>Hyundai Verna</h4>
       <p>Sedan | Automatic | 2023</p>
+      <div class="rating-price">
+        <span class="stars">⭐ 4.3</span>
+        <span class="price">₹3,699/day</span>
+      </div>
       <button>Book Now</button>
     </div>
     <div class="car-card" data-type="Hatchback">
-      <img src="https://via.placeholder.com/300x200" alt="Maruti Swift">
+      <img src="https://cdn-fckad.nitrocdn.com/QQqEhdxzQCfGsIbVrVWwmnFZeiIEPRRw/assets/images/optimized/rev-f6e5c78/windshield-expert.s3.ap-south-1.amazonaws.com/wp-content/uploads/2024/06/05130124/2024-Maruti-Suzuki-Swift-Hatchback-Receives-4-Star-Safety-Rating-In-Japan-NCAP-Crash-Test-2.jpg" alt="Maruti Swift">
       <h4>Maruti Swift</h4>
       <p>Hatchback | Manual | 2022</p>
+      <div class="rating-price">
+        <span class="stars">⭐ 4.2</span>
+        <span class="price">₹2,999/day</span>
+      </div>
       <button>Book Now</button>
     </div>
     <div class="car-card" data-type="Luxury">
-      <img src="https://via.placeholder.com/300x200" alt="Audi A6">
+      <img src="https://trident-group.s3.ap-south-1.amazonaws.com/hyundai/models/colors/1698658899.png" alt="Audi A6">
       <h4>Audi A6</h4>
       <p>Luxury | Automatic | 2023</p>
+      <div class="rating-price">
+        <span class="stars">⭐ 4.7</span>
+        <span class="price">₹6,199/day</span>
+      </div>
       <button>Book Now</button>
     </div>
   </div>
 
-  <!-- Booking Modal -->
-  <div id="booking-modal">
+  <div id="booking-modal" style="display: none;">
     <div class="overlay">
       <div class="modal">
         <h3>Book This Car</h3>
@@ -120,15 +119,38 @@
   </footer>
 
   <script>
+    const carAvailability = {
+      "Tesla Model 3": ["2025-07-01", "2025-07-05", "2025-07-10"],
+      "BMW X5": ["2025-07-03", "2025-07-05"],
+      "Toyota Fortuner": ["2025-07-01", "2025-07-04"],
+      "Hyundai Verna": ["2025-07-02", "2025-07-06"],
+      "Maruti Swift": ["2025-07-01", "2025-07-07"],
+      "Audi A6": ["2025-07-05", "2025-07-10"]
+    };
+
+    function applySearch() {
+      const query = document.getElementById("search-input").value.toLowerCase();
+      const date = document.getElementById("search-date").value;
+
+      document.querySelectorAll(".car-card").forEach(card => {
+        const title = card.querySelector("h4").innerText;
+        const matchQuery = title.toLowerCase().includes(query);
+        const matchDate = !date || (carAvailability[title] && carAvailability[title].includes(date));
+
+        card.style.display = (matchQuery && matchDate) ? "block" : "none";
+      });
+    }
+
     function filterCars(type) {
-      const cards = document.querySelectorAll('.car-card');
-      cards.forEach(card => {
+      document.querySelectorAll('.car-card').forEach(card => {
         card.style.display = (type === 'all' || card.dataset.type === type) ? 'block' : 'none';
       });
     }
 
     function openModal(carName = '') {
       const modal = document.getElementById("booking-modal");
+      const selectedDate = document.getElementById("search-date").value;
+      document.getElementById("date").value = selectedDate || "";
       modal.style.display = "block";
       modal.setAttribute("data-car", carName);
     }
@@ -148,17 +170,23 @@
         return;
       }
 
-      const booking = { name, email, date, car };
-      const bookings = JSON.parse(localStorage.getItem("bookings") || "[]");
-      bookings.push(booking);
-      localStorage.setItem("bookings", JSON.stringify(bookings));
-
-      alert(`Booking confirmed for ${name} (${car}) on ${date}. Confirmation sent to ${email}.`);
-
-      document.getElementById("name").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("date").value = "";
-      closeModal();
+      fetch("http://localhost:5000/bookings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, date, car }),
+      })
+        .then(res => res.json())
+        .then(() => {
+          alert(`Booking confirmed for ${name} (${car}) on ${date}.`);
+          document.getElementById("name").value = "";
+          document.getElementById("email").value = "";
+          document.getElementById("date").value = "";
+          closeModal();
+        })
+        .catch(err => {
+          console.error(err);
+          alert("Error saving booking. Please try again.");
+        });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -167,6 +195,18 @@
         const title = card.querySelector("h4").innerText;
         button.addEventListener("click", () => openModal(title));
       });
+
+      const cards = document.querySelectorAll(".car-card");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      cards.forEach(card => observer.observe(card));
     });
   </script>
 </body>
